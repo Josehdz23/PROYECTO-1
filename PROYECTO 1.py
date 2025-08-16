@@ -10,7 +10,7 @@ while a == False:
             opciones1 = 0
             b = False
             while b == False:
-                print("\n----Listar Productos----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Regresar")
+                print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Regresar")
                 opciones1 = int(input("Elija una opcion: "))
                 match opciones1:
                     case 1:
@@ -24,8 +24,39 @@ while a == False:
                     case _:
                         print("Opcion invalida")
         case 3:
-            pass
+            opciones1 = 0
+            b = False
+            while b == False:
+                print("\n-----Buscar Productos-----\n1. Por codigo\n2. Por nombre\n3. Por categoria\n4. Regresar")
+                opciones1 = int(input("Elija una opcion: "))
+                match opciones1:
+                    case 1:
+                        pass
+                    case 2:
+                        pass
+                    case 3:
+                        pass
+                    case 4:
+                        b = True
+                    case _:
+                        print("Opcion invalida")
         case 4:
+            opciones1 = 0
+            b = False
+            while b == False:
+                print("\n-----Actualizar Productos-----\n1. Actualizar precio\n2. Actualizar stock\n3. Actualizar precio y stock\n4. Regresar")
+                opciones1 = int(input("Elija una opcion: "))
+                match opciones1:
+                    case 1:
+                        pass
+                    case 2:
+                        pass
+                    case 3:
+                        pass
+                    case 4:
+                        b = True
+                    case _:
+                        print("Opcion invalida")
             pass
         case 5:
             pass
