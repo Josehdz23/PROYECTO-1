@@ -1,3 +1,5 @@
+from Registrar_Listar import registro_productos
+
 opciones = 0
 a = False
 while a == False:
@@ -5,7 +7,8 @@ while a == False:
     opciones = int(input("Elija una opcion: "))
     match opciones:
         case 1:
-            pass
+            registrar = registro_productos()
+            registrar.registrar_productos()
         case 2:
             opciones1 = 0
             b = False
