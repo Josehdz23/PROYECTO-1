@@ -1,13 +1,12 @@
 class productos():
-    def __init__(self, codigo, nombre, categoria, precio, stock):
-        self.codigo = codigo
+    def __init__(self, nombre, categoria, precio, stock):
         self.nombre = nombre
         self.categoria = categoria
         self.precio = precio
         self.stock = stock
 
-    def info_productos(self):
-        return f"Codigo: {self.codigo}, Nombre: {self.nombre}, Categoria: {self.categoria}, Precio: {self.precio}, Stock: {self.stock}"
+    def __str__(self):
+        return f"Nombre: {self.nombre}, Categoria: {self.categoria}, Precio: {self.precio}, Stock: {self.stock}"
 
 class registro_productos():
     def __init__(self):
@@ -18,12 +17,12 @@ class registro_productos():
         if codigo in self.diccionario_productos:
             print("El codigo ya esta en uso, intente de nuevo")
             return
-        nombre = input("Ingrese el nombre: ")
-        categoria = input("Ingrese la categoria: ")
+        nombre = input("Ingrese el nombre: ").lower()
+        categoria = input("Ingrese la categoria: ").lower()
         precio = float(input("Ingrese el precio: "))
         stock = int(input("Ingrese el stock: "))
 
-        self.diccionario_productos[codigo] = productos(codigo, nombre, categoria, precio, stock)
+        self.diccionario_productos[codigo] = productos(nombre, categoria, precio, stock)
         print("Se ha registrado con exito!")
 
     def info(self):

@@ -1,14 +1,14 @@
 from Registrar_Listar import registro_productos
-from Buscar_Actualizar import Buscar
+from Buscar_Actualizar import Buscar, Modificar
 registrar = registro_productos()
 busqueda = Buscar(registrar)
-
+modificar = Modificar(registrar)
 def menu():
-    print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto\n6. Salir")
+    print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
 def menuListarProductos():
     print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Regresar")
 def menuBusqueda():
-    print("\n-----Buscar Productos-----\n1. Por código\n2. Por nombre\n3. Por categoria\n4. Regresar")
+    print("\n-----Buscar Productos-----\n1. Por código\n2. Por nombre\n3. Por categoria\n4. Busqueda por coincidencia\n5. Regresar")
 def menuActulizarProductos():
     print("\n-----Actualizar Productos-----\n1. Actualizar precio\n2. Actualizar stock\n3. Actualizar precio y stock\n4. Regresar")
 
@@ -21,16 +21,37 @@ def busquedaProductos():
                 case 1:
                     while True:
                         try:
-                            codigo = int(input("Ingrese código: "))
+                            codigo = int(input("Ingrese el código a buscar: "))
                             print(busqueda.buscar_codigo(codigo))
                             break
                         except Exception as ex:
                             print(f"Ha ocurrido un error: {ex}")
                 case 2:
-                    pass
+                    while True:
+                        nombre = input("Ingrese el nombre a buscar: ")
+                        print(busqueda.buscar_nombre(nombre))
+                        break
                 case 3:
-                    pass
+                    while True:
+                        categoria = input("Ingrese el categoria a buscar: ")
+                        print(busqueda.buscar_categoria(categoria))
+                        break
                 case 4:
+                    while True:
+                        coincidencia = input("Ingrese el coincidencia a buscar: ")
+                        if len(coincidencia) > 1:
+                            encontrados = busqueda.buscar_en_diccionario(coincidencia)
+                            if encontrados:
+                                print("\nCoincidencias encontradas:")
+                                for k, v in encontrados.items():
+                                    print(f"ID {k}: {v}")
+                                encontrados.clear()
+                            else:
+                                print("\nNo se encontraron coincidencias.")
+                            break
+                        else:
+                            print("\nLa palabra para buscar por coincidencia debe tener más de 2 caracteres, reintente.")
+                case 5:
                     break
                 case _:
                     print("Opción inválida, reintente")
@@ -76,7 +97,19 @@ def actualizarProductos():
             print(f"Ha ocurrido un error: {ex}")
 
 def eliminarProductos():
-    pass
+    if registrar.diccionario_productos:
+        while True:
+            try:
+                cod = int(input("Ingrese el código del producto que va a eliminar: "))
+                if cod > 0:
+                    modificar.eliminar_producto(cod)
+                    break
+                else:
+                    print("El código no es válido, reintente.")
+            except Exception as ex:
+                print(f"Ha ocurrido un error: {ex}")
+    else:
+        print("No hay productos para eliminar")
 
 def main():
     while True:

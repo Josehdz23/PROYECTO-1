@@ -4,13 +4,40 @@ class Buscar():
 
     def buscar_codigo(self, codigo):
         if codigo in self.registro.diccionario_productos:
-            return self.registro.diccionario_productos[codigo].info_productos()
+            return self.registro.diccionario_productos[codigo]
         else:
-            return "No"
+            return "No se encontraron productos con ese código"
 
     def buscar_nombre(self, nombre):
         for producto in self.registro.diccionario_productos.values():
             if producto.nombre.lower() == nombre.lower():
-                return producto.info_productos()
+                return producto
         return "No se encontraron productos con ese nombre"
-#2
+
+    def buscar_categoria(self, categoria):
+        for producto in self.registro.diccionario_productos.values():
+            if producto.categoria.lower() == categoria.lower():
+                return producto
+        return "No se encontraron productos con ese precio"
+
+    def buscar_en_diccionario(self, termino):
+        termino = str(termino).lower()
+        resultados = {}
+        resultados.clear()
+
+        for clave, obj in self.registro.diccionario_productos.items():
+            if termino in str(obj):
+                resultados[clave] = obj
+
+        return resultados
+
+class Modificar():
+    def __init__(self, registro):
+        self.registro = registro
+
+    def eliminar_producto(self, codigo):
+        for clave, obj in self.registro.diccionario_productos.items():
+            if clave == codigo:
+                print(f"Se ha eliminado el producto: ID: {clave} {obj}")
+                self.registro.diccionario_productos.pop(clave)
+                return
