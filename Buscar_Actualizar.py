@@ -18,9 +18,9 @@ class Buscar():
         for producto in self.registro.diccionario_productos.values():
             if producto.categoria.lower() == categoria.lower():
                 return producto
-        return "No se encontraron productos con ese precio"
+        return "No se encontraron productos con esa categoria"
 
-    def buscar_en_diccionario(self, termino):
+    def buscar_en_coincidencia(self, termino):
         termino = str(termino).lower()
         resultados = {}
         resultados.clear()
@@ -36,11 +36,15 @@ class Modificar():
         self.registro = registro
 
     def eliminar_producto(self, codigo):
+        b = 0
         for clave, obj in self.registro.diccionario_productos.items():
             if clave == codigo:
+                b = 1
                 print(f"Se ha eliminado el producto: ID: {clave} {obj}")
                 self.registro.diccionario_productos.pop(clave)
                 return
+        if b == 0:
+            return "No hay ningún producto con ese código"
 
     def actualizar_precio(self,codigo, precio):
         for clave, obj in self.registro.diccionario_productos.items():
@@ -48,5 +52,12 @@ class Modificar():
                 print(f"Se ha actualizado el precio del producto de: ID: {clave} {obj}")
                 self.registro.diccionario_productos[clave].precio = precio
                 print(f"Al nuevo precio: ID: {clave} {obj}")
+                return
+    def actualizar_stock(self,codigo,stock):
+        for clave, obj in self.registro.diccionario_productos.items():
+            if clave == codigo:
+                print(f"Se ha actualizado el stock del producto de: ID: {clave} {obj}")
+                self.registro.diccionario_productos[clave].stock = stock
+                print(f"Al nuevo stock: ID: {clave} {obj}")
                 return
 
