@@ -15,10 +15,16 @@ class Buscar():
         return "No se encontraron productos con ese nombre"
 
     def buscar_categoria(self, categoria):
+        cont = 0
+        aux = ()
         for producto in self.registro.diccionario_productos.values():
             if producto.categoria.lower() == categoria.lower():
-                return producto
-        return "No se encontraron productos con esa categoria"
+                cont = cont + 1
+                aux = producto
+            if cont > 1:
+                return "Hay más de 2 productos con la misma categoria, busque por coincidencia"
+        if cont == 1:
+            return aux
 
     def buscar_en_coincidencia(self, termino):
         termino = str(termino).lower()

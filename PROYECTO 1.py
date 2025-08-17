@@ -1,8 +1,10 @@
 from Registrar_Listar import registro_productos
 from Buscar_Actualizar import Buscar, Modificar
+
 registrar = registro_productos()
 busqueda = Buscar(registrar)
 modificar = Modificar(registrar)
+
 def menu():
     print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
 def menuListarProductos():
@@ -104,12 +106,19 @@ def actualizarProductos():
                             try:
                                 codigo = int(input("Ingrese el código del producto que le cambiará el precio: "))
                                 if codigo in registrar.diccionario_productos:
-                                    precio = float(input("Ingrese el precio nuevo que le dará : "))
-                                    if precio > 0:
-                                        modificar.actualizar_precio(codigo, precio)
-                                        break
-                                    else:
-                                        print("El precio no es válido, debe ser mayor a 0.")
+                                    while True:
+                                        try:
+                                            precio = float(input("Ingrese el precio nuevo que le dará : "))
+                                            if precio > 0:
+                                                modificar.actualizar_precio(codigo, precio)
+                                                break
+                                            else:
+                                                print("El precio no es válido, debe ser mayor a 0.")
+                                        except Exception as ex:
+                                            print(f"Ha ocurrido un error: {ex}")
+                                    break
+                                else:
+                                    print("El código ingresado no existe, reintente.")
                             except Exception as ex:
                                 print(f"Ha ocurrido un error: {ex}")
                     case 2:
@@ -117,12 +126,19 @@ def actualizarProductos():
                             try:
                                 codigo = int(input("Ingrese el código del producto que le cambiará el stock: "))
                                 if codigo in registrar.diccionario_productos:
-                                    stock = int(input("Ingrese el stock nuevo que le dará: "))
-                                    if stock > 0:
-                                        modificar.actualizar_stock(codigo, stock)
-                                        break
-                                    else:
-                                        print("El stock no es válido, debe ser mayor a 0.")
+                                    while True:
+                                        try:
+                                            stock = int(input("Ingrese el stock nuevo que le dará: "))
+                                            if stock > 0:
+                                                modificar.actualizar_stock(codigo, stock)
+                                                break
+                                            else:
+                                                print("El stock no es válido, debe ser mayor a 0.")
+                                        except Exception as ex:
+                                            print(f"Ha ocurrido un error: {ex}")
+                                    break
+                                else:
+                                    print("El código ingresado no existe, reintente.")
                             except Exception as ex:
                                 print(f"Ha ocurrido un error: {ex}")
                     case 3:
@@ -150,6 +166,8 @@ def actualizarProductos():
                                             print(f"Ha ocurrido un error: {ex}")
                                     modificar.actualizar_precio_stock(codigo, stock, precio)
                                     break
+                                else:
+                                    print("El código no existe, reintente.")
                             except Exception as ex:
                                 print(f"Ha ocurrido un error: {ex}")
                     case 4:
