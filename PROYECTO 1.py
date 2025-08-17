@@ -12,6 +12,25 @@ def menuBusqueda():
 def menuActulizarProductos():
     print("\n-----Actualizar Productos-----\n1. Actualizar precio\n2. Actualizar stock\n3. Actualizar precio y stock\n4. Regresar")
 
+def listarProductos():
+    while True:
+        try:
+            menuListarProductos()
+            opciones = int(input("Elija una opción: "))
+            match opciones:
+                case 1:
+                    pass
+                case 2:
+                    pass
+                case 3:
+                    pass
+                case 4:
+                    break
+                case _:
+                    print("Opción inválida, reintente")
+        except Exception as ex:
+            print(f"Ha ocurrido un error: {ex}")
+
 def busquedaProductos():
     while True:
         try:
@@ -58,43 +77,35 @@ def busquedaProductos():
         except Exception as ex:
             print(f"Ha ocurrido un error: {ex}")
 
-def listarProductos():
-    while True:
-        try:
-            menuListarProductos()
-            opciones = int(input("Elija una opción: "))
-            match opciones:
-                case 1:
-                    pass
-                case 2:
-                    pass
-                case 3:
-                    pass
-                case 4:
-                    break
-                case _:
-                    print("Opción inválida, reintente")
-        except Exception as ex:
-            print(f"Ha ocurrido un error: {ex}")
-
 def actualizarProductos():
-    while True:
-        try:
-            menuActulizarProductos()
-            opciones = int(input("Elija una opción: "))
-            match opciones:
-                case 1:
-                    pass
-                case 2:
-                    pass
-                case 3:
-                    pass
-                case 4:
-                    break
-                case _:
-                    print("Opción inválida, reintente")
-        except Exception as ex:
-            print(f"Ha ocurrido un error: {ex}")
+    if registrar.diccionario_productos:
+        while True:
+            try:
+                menuActulizarProductos()
+                opciones = int(input("Elija una opción: "))
+                match opciones:
+                    case 1:
+                        while True:
+                            try:
+                                codigo = int(input("Ingrese el código del producto que le cambiará el precio: "))
+                                if codigo in registrar.diccionario_productos:
+                                    precio = float(input("Ingrese el precio nuevo que le dará : "))
+                                    modificar.actualizar_precio(codigo, precio)
+                                    break
+                            except Exception as ex:
+                                print(f"Ha ocurrido un error: {ex}")
+                    case 2:
+                        pass
+                    case 3:
+                        pass
+                    case 4:
+                        break
+                    case _:
+                        print("Opción inválida, reintente")
+            except Exception as ex:
+                print(f"Ha ocurrido un error: {ex}")
+    else:
+        print("No hay productos en el inventario.")
 
 def eliminarProductos():
     if registrar.diccionario_productos:
@@ -109,7 +120,7 @@ def eliminarProductos():
             except Exception as ex:
                 print(f"Ha ocurrido un error: {ex}")
     else:
-        print("No hay productos para eliminar")
+        print("No hay productos en el inventario.")
 
 def main():
     while True:

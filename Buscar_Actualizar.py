@@ -41,3 +41,12 @@ class Modificar():
                 print(f"Se ha eliminado el producto: ID: {clave} {obj}")
                 self.registro.diccionario_productos.pop(clave)
                 return
+
+    def actualizar_precio(self,codigo, precio):
+        for clave, obj in self.registro.diccionario_productos.items():
+            if clave == codigo:
+                print(f"Se ha actualizado el precio del producto de: ID: {clave} {obj}")
+                self.registro.diccionario_productos[clave].precio = precio
+                print(f"Al nuevo precio: ID: {clave} {obj}")
+                return
+
