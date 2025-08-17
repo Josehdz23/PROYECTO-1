@@ -3,7 +3,6 @@ from Buscar_Actualizar import Buscar
 registrar = registro_productos()
 busqueda = Buscar(registrar)
 
-registrar = registro_productos()
 opciones = 0
 a = False
 while a == False:
@@ -37,6 +36,8 @@ while a == False:
                 opciones1 = int(input("Elija una opcion: "))
                 match opciones1:
                     case 1:
+                        codigo = int(input("Ingrese codigo"))
+                        print(busqueda.buscar_codigo(codigo))
                         pass
                     case 2:
                         pass
