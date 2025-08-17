@@ -36,15 +36,11 @@ class Modificar():
         self.registro = registro
 
     def eliminar_producto(self, codigo):
-        b = 0
         for clave, obj in self.registro.diccionario_productos.items():
             if clave == codigo:
-                b = 1
                 print(f"Se ha eliminado el producto: ID: {clave} {obj}")
                 self.registro.diccionario_productos.pop(clave)
                 return
-        if b == 0:
-            return "No hay ningún producto con ese código"
 
     def actualizar_precio(self,codigo, precio):
         for clave, obj in self.registro.diccionario_productos.items():
@@ -60,4 +56,13 @@ class Modificar():
                 self.registro.diccionario_productos[clave].stock = stock
                 print(f"Al nuevo stock: ID: {clave} {obj}")
                 return
+    def actualizar_precio_stock(self,codigo,precio,stock):
+        for clave, obj in self.registro.diccionario_productos.items():
+            if clave == codigo:
+                print(f"Se ha actualizado el precio y el stock del producto de: ID: {clave} {obj}")
+                self.registro.diccionario_productos[clave].precio = precio
+                self.registro.diccionario_productos[clave].stock = stock
+                print(f"Al nuevo precio y stock: ID: {clave} {obj}")
+                return
+
 

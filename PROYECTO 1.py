@@ -52,26 +52,35 @@ def busquedaProductos():
                     case 2:
                         while True:
                             nombre = input("Ingrese el nombre a buscar: ")
-                            print(busqueda.buscar_nombre(nombre))
-                            break
+                            if nombre.strip() == "":
+                                print("Error: debe ingresar algún contenido, no solo espacios.")
+                            else:
+                                print(busqueda.buscar_nombre(nombre))
+                                break
                     case 3:
                         while True:
                             categoria = input("Ingrese la categoria a buscar: ")
-                            print(busqueda.buscar_categoria(categoria))
-                            break
+                            if categoria.strip() == "":
+                                print("Error: debe ingresar algún contenido, no solo espacios.")
+                            else:
+                                print(busqueda.buscar_categoria(categoria))
+                                break
                     case 4:
                         while True:
                             coincidencia = input("Ingrese la coincidencia a buscar: ")
                             if len(coincidencia) > 1:
-                                encontrados = busqueda.buscar_en_coincidencia(coincidencia)
-                                if encontrados:
-                                    print("\nCoincidencias encontradas:")
-                                    for k, v in encontrados.items():
-                                        print(f"ID {k}: {v}")
-                                    encontrados.clear()
+                                if coincidencia.strip() == "":
+                                    print("Error: debe ingresar algún contenido, no solo espacios.")
                                 else:
-                                    print("\nNo se encontraron coincidencias.")
-                                break
+                                    encontrados = busqueda.buscar_en_coincidencia(coincidencia)
+                                    if encontrados:
+                                        print("\nCoincidencias encontradas:")
+                                        for k, v in encontrados.items():
+                                            print(f"ID {k}: {v}")
+                                        encontrados.clear()
+                                    else:
+                                        print("\nNo se encontraron coincidencias.")
+                                    break
                             else:
                                 print("\nLa palabra para buscar por coincidencia debe tener más de 2 caracteres, reintente.")
                     case 5:
@@ -96,8 +105,11 @@ def actualizarProductos():
                                 codigo = int(input("Ingrese el código del producto que le cambiará el precio: "))
                                 if codigo in registrar.diccionario_productos:
                                     precio = float(input("Ingrese el precio nuevo que le dará : "))
-                                    modificar.actualizar_precio(codigo, precio)
-                                    break
+                                    if precio > 0:
+                                        modificar.actualizar_precio(codigo, precio)
+                                        break
+                                    else:
+                                        print("El precio no es válido, debe ser mayor a 0.")
                             except Exception as ex:
                                 print(f"Ha ocurrido un error: {ex}")
                     case 2:
@@ -106,12 +118,40 @@ def actualizarProductos():
                                 codigo = int(input("Ingrese el código del producto que le cambiará el stock: "))
                                 if codigo in registrar.diccionario_productos:
                                     stock = int(input("Ingrese el stock nuevo que le dará: "))
-                                    modificar.actualizar_stock(codigo, stock)
-                                    break
+                                    if stock > 0:
+                                        modificar.actualizar_stock(codigo, stock)
+                                        break
+                                    else:
+                                        print("El stock no es válido, debe ser mayor a 0.")
                             except Exception as ex:
                                 print(f"Ha ocurrido un error: {ex}")
                     case 3:
-                        pass
+                        while True:
+                            try:
+                                codigo = int(input("Ingrese el código del producto que le cambiará el precio y el stock: "))
+                                if codigo in registrar.diccionario_productos:
+                                    while True:
+                                        try:
+                                            precio = float(input("Ingrese el precio nuevo que le dará: "))
+                                            if precio > 0:
+                                                break
+                                            else:
+                                                print("El precio no es válido, debe ser mayor a 0.")
+                                        except Exception as ex:
+                                            print(f"Ha ocurrido un error: {ex}")
+                                    while True:
+                                        try:
+                                            stock = int(input("Ingrese el stock nuevo que le dará: "))
+                                            if stock > 0:
+                                                break
+                                            else:
+                                                print("El stock no es válido, debe ser mayor a 0.")
+                                        except Exception as ex:
+                                            print(f"Ha ocurrido un error: {ex}")
+                                    modificar.actualizar_precio_stock(codigo, stock, precio)
+                                    break
+                            except Exception as ex:
+                                print(f"Ha ocurrido un error: {ex}")
                     case 4:
                         break
                     case _:
@@ -126,11 +166,12 @@ def eliminarProductos():
         while True:
             try:
                 cod = int(input("Ingrese el código del producto que va a eliminar: "))
-                if cod > 0:
+                if cod in registrar.diccionario_productos:
                     modificar.eliminar_producto(cod)
                     break
                 else:
-                    print("El código no es válido, reintente.")
+                    print(f"El producto con código {cod} no existe.")
+                    break
             except Exception as ex:
                 print(f"Ha ocurrido un error: {ex}")
     else:
