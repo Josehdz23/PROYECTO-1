@@ -1,4 +1,7 @@
 from Registrar_Listar import registro_productos
+from Buscar_Actualizar import Buscar
+registrar = registro_productos()
+busqueda = Buscar(registrar)
 
 opciones = 0
 a = False
@@ -7,7 +10,6 @@ while a == False:
     opciones = int(input("Elija una opcion: "))
     match opciones:
         case 1:
-            registrar = registro_productos()
             registrar.registrar_productos()
         case 2:
             opciones1 = 0
@@ -34,6 +36,8 @@ while a == False:
                 opciones1 = int(input("Elija una opcion: "))
                 match opciones1:
                     case 1:
+                        codigo = int(input("Ingrese codigo"))
+                        print(busqueda.buscar_codigo(codigo))
                         pass
                     case 2:
                         pass
