@@ -1,4 +1,8 @@
 from Registrar_Listar import registro_productos
+from Buscar_Actualizar import Buscar
+registrar = registro_productos()
+busqueda = Buscar(registrar)
+
 registrar = registro_productos()
 opciones = 0
 a = False
