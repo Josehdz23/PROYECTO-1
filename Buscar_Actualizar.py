@@ -1,5 +1,3 @@
-from Registrar_Listar import registro_productos
-
 class Buscar():
     def __init__(self, registro):
         self.registro = registro
@@ -15,3 +13,4 @@ class Buscar():
             if producto.nombre.lower() == nombre.lower():
                 return producto.info_productos()
         return "No se encontraron productos con ese nombre"
+#2
