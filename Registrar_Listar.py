@@ -13,17 +13,63 @@ class registro_productos():
         self.diccionario_productos = {}
 
     def registrar_productos(self):
-        codigo = int(input("Ingrese el codigo: "))
-        if codigo in self.diccionario_productos:
-            print("El codigo ya esta en uso, intente de nuevo")
-            return
-        nombre = input("Ingrese el nombre: ").lower()
-        categoria = input("Ingrese la categoria: ").lower()
-        precio = float(input("Ingrese el precio: "))
-        stock = int(input("Ingrese el stock: "))
-
-        self.diccionario_productos[codigo] = productos(nombre, categoria, precio, stock)
-        print("Se ha registrado con exito!")
+        s = False
+        while s == False:
+            try:
+                cantidad = int(input("Cuantos productos desea registrar: "))
+                if cantidad <= 0:
+                    print("La cantidad debe de ser un numero entero mayor a cero")
+                else:
+                    s = True
+            except Exception as ex:
+                print(f"Ha ocurrido un error: {ex}")
+        for v in range(cantidad):
+            s = False
+            while s == False:
+                try:
+                    codigo = int(input("\nIngrese el codigo: "))
+                    if codigo in self.diccionario_productos:
+                        print("El codigo ya esta en uso, intente de nuevo")
+                    else:
+                        s = True
+                except Exception as ex:
+                    print(f"Ha ocurrido un error: {ex}")
+            s = False
+            while s == False:
+                nombre = input("Ingrese el nombre: ").strip().lower()
+                if nombre == "":
+                    print("El nombre no puede estar vacio")
+                else:
+                    s = True
+            s = False
+            while s == False:
+                categoria = input("Ingrese la categoria: ").strip().lower()
+                if categoria == "":
+                    print("La categoria no puede estar vacia")
+                else:
+                    s = True
+            s = False
+            while s == False:
+                try:
+                    precio = float(input("Ingrese el precio: "))
+                    if precio <= 0:
+                        print("El precio tiene que ser un numero, no una letra o un numero negativo")
+                    else:
+                        s = True
+                except Exception as ex:
+                    print(f"Ha ocurrido un error: {ex}")
+            s = False
+            while s == False:
+                try:
+                    stock = int(input("Ingrese el stock: "))
+                    if stock <= 0:
+                        print("El stock tiene que ser un numero entero positivo")
+                    else:
+                        s = True
+                except Exception as ex:
+                    print(f"Ha ocurrido un error: {ex}")
+            self.diccionario_productos[codigo] = productos(nombre, categoria, precio, stock)
+            print("\nSe ha registrado con exito!")
 
     def info(self):
         if len(self.diccionario_productos) > 0:
