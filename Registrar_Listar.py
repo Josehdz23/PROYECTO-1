@@ -43,3 +43,12 @@ class quick_sorts():
         iguales = [x for x in lista if x.nombre == pivote.nombre]
         mayores = [x for x in lista[1:] if x.nombre > pivote.nombre]
         return self.quick_sort_nombre(menores) + iguales + self.quick_sort_nombre(mayores)
+
+    def quick_sort_precio(self, lista):
+        if len(lista) <= 1:
+            return  lista
+        pivote = lista[0]
+        mayores = [x for x in lista[1:] if x.precio > pivote.precio]
+        iguales = [x for x in lista if x.precio == pivote.precio]
+        menores = [x for x in lista[1:] if x.precio < pivote.precio]
+        return self.quick_sort_precio(mayores) + iguales + self.quick_sort_precio(menores)
