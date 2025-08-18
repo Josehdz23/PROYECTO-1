@@ -1,9 +1,10 @@
-from Registrar_Listar import registro_productos
+from Registrar_Listar import registro_productos, quick_sorts
 from Buscar_Actualizar import Buscar, Modificar
 
 registrar = registro_productos()
 busqueda = Buscar(registrar)
 modificar = Modificar(registrar)
+sort = quick_sorts()
 
 def menu():
     print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
@@ -22,7 +23,9 @@ def listarProductos():
                 opciones = int(input("Elija una opción: "))
                 match opciones:
                     case 1:
-                        pass
+                        productos_ordenados = sort.quick_sort_nombre(list(registrar.diccionario_productos.values()))
+                        for producto in productos_ordenados:
+                            print(producto)
                     case 2:
                         pass
                     case 3:

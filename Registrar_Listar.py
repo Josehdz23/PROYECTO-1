@@ -33,3 +33,13 @@ class registro_productos():
         else:
             print("No hay productos registrados")
 registro = registro_productos()
+
+class quick_sorts():
+    def quick_sort_nombre(self, lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x.nombre < pivote.nombre]
+        iguales = [x for x in lista if x.nombre == pivote.nombre]
+        mayores = [x for x in lista[1:] if x.nombre > pivote.nombre]
+        return self.quick_sort_nombre(menores) + iguales + self.quick_sort_nombre(mayores)
