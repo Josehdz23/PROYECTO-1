@@ -30,9 +30,10 @@ def listarProductos():
                         productos_ordenados = sort.quick_sort_precio(list(registrar.diccionario_productos.values()))
                         for producto in productos_ordenados:
                             print(producto)
-                        pass
                     case 3:
-                        pass
+                        productos_ordenados = sort.quick_sort_stock(list(registrar.diccionario_productos.values()))
+                        for producto in productos_ordenados:
+                            print(producto)
                     case 4:
                         break
                     case _:
