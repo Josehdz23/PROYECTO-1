@@ -75,8 +75,8 @@ class registro_productos():
     def info(self):
         if len(self.diccionario_productos) > 0:
             print("Productos Agregados")
-            for producto in self.diccionario_productos.values():
-                print(producto.info_productos())
+            for clave, producto in self.diccionario_productos.items():
+                print("Codigo: ",clave, producto)
         else:
             print("No hay productos registrados")
 registro = registro_productos()

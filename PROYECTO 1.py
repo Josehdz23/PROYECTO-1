@@ -9,7 +9,7 @@ sort = quick_sorts()
 def menu():
     print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
 def menuListarProductos():
-    print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Regresar")
+    print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Mostrar inventario\n5. Salir")
 def menuBusqueda():
     print("\n-----Buscar Productos-----\n1. Por código\n2. Por nombre\n3. Por categoria\n4. Busqueda por coincidencia\n5. Regresar")
 def menuActulizarProductos():
@@ -35,6 +35,8 @@ def listarProductos():
                         for producto in productos_ordenados:
                             print(producto)
                     case 4:
+                        registrar.info()
+                    case 5:
                         break
                     case _:
                         print("Opción inválida, reintente")
