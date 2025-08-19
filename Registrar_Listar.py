@@ -6,7 +6,7 @@ class productos():
         self.stock = stock
 
     def __str__(self):
-        return f"Nombre: {self.nombre}, Categoria: {self.categoria}, Precio: {self.precio}, Stock: {self.stock}"
+        return f"Nombre: {self.nombre}, Categoria: {self.categoria}, Precio: Q.{self.precio}, Stock: {self.stock}"
 
 class registro_productos():
     def __init__(self):
@@ -25,6 +25,7 @@ class registro_productos():
                 print(f"Ha ocurrido un error: {ex}")
         for v in range(cantidad):
             s = False
+            print(f"\nPRODUCTO #{v+1}")
             while s == False:
                 try:
                     codigo = int(input("\nIngrese el codigo: "))
