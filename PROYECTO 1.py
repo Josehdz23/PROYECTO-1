@@ -6,20 +6,21 @@ busqueda = Buscar(registrar)
 modificar = Modificar(registrar)
 sort = quick_sorts()
 
-def menu():
-    print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
-def menuListarProductos():
-    print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Mostrar inventario\n5. Salir")
-def menuBusqueda():
-    print("\n-----Buscar Productos-----\n1. Por código\n2. Por nombre\n3. Por categoria\n4. Busqueda por coincidencia\n5. Regresar")
-def menuActulizarProductos():
-    print("\n-----Actualizar Productos-----\n1. Actualizar precio\n2. Actualizar stock\n3. Actualizar precio y stock\n4. Regresar")
-
+class Menus:
+    def menu(self):
+        print("\n-----Menú-----\n1. Registrar producto\n2. Listar productos\n3. Buscar productos\n4. Actualizar producto\n5. Eliminar producto (por código)\n6. Salir")
+    def menuListarProductos(self):
+        print("\n-----Listar Productos-----\n1. Por nombre\n2. Por precio\n3. Por stock\n4. Mostrar inventario\n5. Salir")
+    def menuBusqueda(self):
+        print("\n-----Buscar Productos-----\n1. Por código\n2. Por nombre\n3. Por categoria\n4. Busqueda por coincidencia\n5. Regresar")
+    def menuActulizarProductos(self):
+        print("\n-----Actualizar Productos-----\n1. Actualizar precio\n2. Actualizar stock\n3. Actualizar precio y stock\n4. Regresar")
+menu = Menus()
 def listarProductos():
     if registrar.diccionario_productos: #Anderson esto solo verifica que el diccionario tenga datos, si no tiene muestra que no hay productos en el inventario
         while True:
             try:
-                menuListarProductos()
+                menu.menuListarProductos()
                 opciones = int(input("Elija una opción: "))
                 match opciones:
                     case 1:
@@ -49,7 +50,7 @@ def busquedaProductos():
     if registrar.diccionario_productos:
         while True:
             try:
-                menuBusqueda()
+                menu.menuBusqueda()
                 opciones = int(input("Elija una opción: "))
                 match opciones:
                     case 1:
@@ -107,7 +108,7 @@ def actualizarProductos():
     if registrar.diccionario_productos:
         while True:
             try:
-                menuActulizarProductos()
+                menu.menuActulizarProductos()
                 opciones = int(input("Elija una opción: "))
                 match opciones:
                     case 1:
@@ -207,7 +208,7 @@ def eliminarProductos():
 def main():
     while True:
         try:
-            menu()
+            menu.menu()
             opciones = int(input("Elija una opción: "))
             match opciones:
                 case 1:
